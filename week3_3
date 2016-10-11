@@ -1,0 +1,46 @@
+int wh = 20;
+int gap = 10;
+
+int r = 255;
+int g = 255;
+int b = 255;
+
+//color [] renkler = {#ff0000,#ff0000,#ffcc00};
+
+void setup() {
+  size(400,400);
+  
+}
+
+
+void draw() {
+  background(#ffffff);
+  noStroke();
+  for(int i = 0; i < 20; i = i +1) {
+
+    for(int j = 0; j < 20; j = j +1) {
+      
+      // r g b
+      
+      //fill(r,g,b);
+      
+      r = int(map(mouseX,0,width,0,255));
+      b = int(map(mouseY,0,height,0,255));
+      
+      fill(r,g,b);
+      
+      rect((wh + gap) * i, j*(wh + gap),wh,wh); 
+    }
+  }
+}
+
+void keyPressed() {
+  println(key + " key is pressed");
+  
+  if(key == 'a') {
+  r = int(random(255));
+  g = int(random(255));
+  b = int(random(255));
+  
+  }
+}
