@@ -1,0 +1,67 @@
+int xpos = 10;
+int wh = 20;
+int gap = 5;
+
+void setup() {
+
+  size(480, 400);
+  smooth();
+}
+
+
+
+void draw() {
+background(#34495E);
+noStroke();
+  /*strokeWeight(8);
+  line(20, 40, 80, 80);
+  line(80, 40, 140, 80);
+  line(140, 40, 200, 80);
+  line(200, 40, 260, 80);
+  line(260, 40, 320, 80);
+  line(320, 40, 380, 80);
+  line(380, 40, 440, 80);*/
+  
+  
+  for(int i = 0; i < 100; i = i + 1) {
+    
+    
+     //rect(xpos+(wh+gap)*i,10,wh,wh);
+     
+  }
+  
+  fill(#ffffff);
+  rect(xpos,10,wh,wh);
+  
+  fill(#E74C3C);
+  ellipse(xpos+wh+gap + wh*0.5,10 + wh*0.5,wh,wh);
+  
+  fill(#ffffff);
+  rect(xpos+(wh+gap)*2,10,wh,wh);
+  
+  fill(#E74C3C);
+  ellipse(xpos+(wh+gap)*3 + wh*0.5,10+ wh*0.5,wh,wh);
+  
+  fill(#ffffff);
+  rect(xpos+(wh+gap)*4,10,wh,wh);
+  
+  fill(#E74C3C);
+  ellipse(xpos+(wh+gap)*5 + wh*0.5,10+ wh*0.5,wh,wh);
+  
+  
+}
+
+
+
+
+
+/*
+ for (int i = 20; i < 400; i += 60) {
+ line(i, 40, i + 60, 80);
+ }
+ 
+ 
+ strokeWeight(2);
+ for (int i = 20; i < 400; i += 8) {
+ line(i, 40, i + 60, 80);
+ }*/
