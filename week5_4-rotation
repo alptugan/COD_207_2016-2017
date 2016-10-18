@@ -1,0 +1,19 @@
+
+void setup() {
+  size(800, 600);
+}
+
+
+
+void draw() {
+
+  background(255);
+
+  fill(100);
+  noStroke();
+  translate(width*0.5,height*0.5);
+  rectMode(CENTER);
+  // rotation matrix expects radian values between 0-1 so we need to convert degree to radian
+  rotate(radians(40));
+  rect(0, 0, 150, 150);
+}
