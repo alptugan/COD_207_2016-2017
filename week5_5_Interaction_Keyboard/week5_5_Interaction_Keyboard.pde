@@ -1,7 +1,7 @@
 int posx = 0;
 int posy = 0;
 
-int moveFactor = 5;
+int moveFactor = 15;
 
 PFont dinFont;
 PFont blackFont;
