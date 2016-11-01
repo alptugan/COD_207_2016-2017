@@ -12,6 +12,8 @@ float down = 0;
 PFont scoreFont;
 String scoreTxt;
 
+int r = 30;
+
 void setup()
 {
   size(500, 500); 
@@ -34,12 +36,30 @@ void draw()
   // set x value to right border 
   // -50 is the half of the ellipse width because ellipse registration point is at the center by default
   // if it's a rect, we should substract -100 because the registration point of the rectangle is at the top left corner by default
-  if (x > width) {
+  if (x > width - r) {
     println("disari cikti"); 
-    x = width;
+    x = width - r;
   } 
 
-  ellipse(x, y, 100, 100);
+
+  if (x < r) {
+
+    x = r;
+  } 
+
+
+  if (y < r) {
+
+    y = r;
+  } 
+  
+  
+    if (y > height - r) {
+
+    y = height - r;
+  } 
+
+  ellipse(x, y, r*2, r*2);
 
 
 
