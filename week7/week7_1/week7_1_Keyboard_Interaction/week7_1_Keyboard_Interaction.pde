@@ -43,26 +43,20 @@ void draw()
 
 
   if (x < r) {
-
     x = r;
   } 
 
 
   if (y < r) {
-
     y = r;
   } 
-  
-  
-    if (y > height - r) {
 
+
+  if (y > height - r) {
     y = height - r;
   } 
 
   ellipse(x, y, r*2, r*2);
-
-
-
 
 
   fill(255);
