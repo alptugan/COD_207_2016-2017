@@ -14,6 +14,9 @@ void setup() {
   velocityX = random(-5,5);
   velocityY = random(-5,5);
   
+  println("velocity x value : " + velocityX);
+  println("velocity y value : " + velocityY);
+  
   locx = width*0.5;
   locy = height*0.5;
 }
