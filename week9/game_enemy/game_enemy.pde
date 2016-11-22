@@ -56,6 +56,13 @@ boolean scene3 = false;
 
 boolean HeroHitsEnemy = false;
 
+
+//----------------------------------------------------------------
+// GAME TIME
+//----------------------------------------------------------------
+float rTime;
+String timeTxt;
+
 void setup()
 {
   size(500, 500); 
@@ -92,6 +99,8 @@ void initGame() {
 
   x = 0;
   y = 0;
+
+  rTime = millis() / 1000;
 }
 
 void draw()
@@ -101,6 +110,7 @@ void draw()
   if (scene2 == true) {
 
     if (gameBgMusicPlayer.isPlaying() == false) {
+      gameBgMusicPlayer.rewind();
       gameBgMusicPlayer.play();
     }
     //----------------------------------------------------------------
@@ -148,14 +158,6 @@ void draw()
     }
     ellipse(x, y, r*2, r*2);
 
-    fill(255);
-    textFont(scoreFont);
-    textSize(32);
-
-    // String cift tirnak icinde yazilir
-    scoreTxt = "Speed: " + speed ;
-    text(scoreTxt, 10, 40);
-
     //----------------------------------------------------------------
     // ENEMY SECTION
     //----------------------------------------------------------------
@@ -164,23 +166,28 @@ void draw()
     enemyLocy = enemyLocy + enemyVely;
 
     if (enemyLocx < 0 || enemyLocx > width) {
+
       enemyVelx = enemyVelx*-1;
 
-      hit1.play();
+      hit2.rewind();
+      hit1.rewind();
 
-      if (hit1.position() == hit1.length()) {
-        hit1.rewind();
+      if (enemyLocx < 0) {
         hit1.play();
+      } else {
+        hit2.play();
       }
     }
 
     if (enemyLocy < 0 || enemyLocy > height) {
       enemyVely = enemyVely*-1;
-      hit2.play();
+      hit3.rewind();
+      hit4.rewind();
 
-      if (hit2.position() == hit2.length()) {
-        hit2.rewind();
-        hit2.play();
+      if (enemyLocx < 0) {
+        hit3.play();
+      } else {
+        hit4.play();
       }
     }
 
@@ -199,14 +206,46 @@ void draw()
       scene1 = false;
       scene3 = true;
     } else {
-      println("HERO RAHAT OL"); 
       HeroHitsEnemy = false;
     }
+
+    //----------------------------------------------------------------
+    // SCORE SECTION
+    //----------------------------------------------------------------
+    fill(255);
+    textFont(scoreFont);
+    textSize(32);
+
+    // String cift tirnak icinde yazilir
+    scoreTxt = "Speed: " + speed ;
+    text(scoreTxt, 20, 40);
+
+    //----------------------------------------------------------------
+    // REMAINING TIME SECTION
+    //----------------------------------------------------------------
+    // Game Time
+    timeTxt = "Time: " + (30 - int(millis()/1000 - rTime)); 
+
+    if ((30 - int(millis()/1000 - rTime)) < 0) {
+      scene1 = false;
+      scene2 = false;
+      scene3 = true;
+    }
+
+    // Draw time on to canvas
+    text(timeTxt, width - 100, 40);
+
+    // Draw seperator line
+    noStroke();
+    rect(20, 50, width - 40, 6);
   }
   //----------------------------------------------------------------
   // START BUTTON - SCENE 1
   //----------------------------------------------------------------
   if (scene1 == true) {
+    if (gameBgMusicPlayer.isPlaying() == true) {
+      gameBgMusicPlayer.pause();
+    }
     pushStyle();
     noStroke();
     fill(#F1C40F);
@@ -225,6 +264,10 @@ void draw()
   // START BUTTON - SCENE 3
   //----------------------------------------------------------------
   if (scene3 == true) {
+    if (gameBgMusicPlayer.isPlaying() == true) {
+      gameBgMusicPlayer.pause();
+    }
+
     pushStyle();
     noStroke();
     fill(#F1C40F);
@@ -310,6 +353,7 @@ void mouseReleased() {
 
       if ( player.isPlaying() == false )
       {
+        player.rewind();
         player.play();
       }
     } else {
@@ -321,9 +365,13 @@ void mouseReleased() {
     if (mouseX > buttonStartx && mouseX < buttonStartx + buttonStartW
       && mouseY > buttonStarty && mouseY < buttonStarty + buttonStartH)
     {
+      if ( player.isPlaying() == false )
+      {
+        player.rewind();
+        player.play();
+      }
+
       initGame();
-      hit1.rewind();
-      hit2.rewind();
       println("start button is pressed");
       scene1 = false;
       scene2 = true;
