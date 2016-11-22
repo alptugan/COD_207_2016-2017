@@ -30,6 +30,10 @@ void draw()
     float x2 = map( i+1, 0, player.bufferSize(), 0, width );
     line( x1, 50 + player.left.get(i)*50, x2, 50 + player.left.get(i+1)*50 );
     line( x1, 150 + player.right.get(i)*50, x2, 150 + player.right.get(i+1)*50 );
+    
+    if(player.left.get(i) < 0) {
+      println(i + " smaller than zero");
+    }
   }
   
   // draw a line to show where in the song playback is currently located
